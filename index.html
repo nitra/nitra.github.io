@@ -15,21 +15,22 @@
 </head>
 
 <body>
-        &lt; Minimalism is not a lack of something. It’s simply the perfect amount of something.
-        > — Nicholas Burroughs
-        
+        Minimalism is not a lack of something. It’s simply the perfect amount of something.
+        — Nicholas Burroughs</br></br>
+    Добро пожаловать <div id="client"></div>    
     <div id="favicon"></div>
     <script>
 
 var domain  = location.search.slice(1);
-                   console.log(domain);
-                   
+
+
                    if (/^[a-zA-Z0-9][a-zA-Z0-9-]{1,61}[a-zA-Z0-9](?:\.[a-zA-Z]{2,})+$/.test(domain)) {
          
                     localStorage.setItem("domain", domain);
   } 
 
   if(localStorage.getItem("domain")) {
+    document.getElementById("client").innerHTML = domain
     document.getElementById("favicon").innerHTML = '<img src="https://plus.google.com/_/favicon?domain=' + localStorage.getItem("domain") + '" />'
   }
 
