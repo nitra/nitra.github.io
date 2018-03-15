@@ -1,90 +1,43 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Nitra new site</title>
-    <link>https://nitra.bitbucket.io/</link>
-    <description>Recent content on Nitra new site</description>
+    <title>Ipsum on Nitra new site</title>
+    <link>http://nitra.github.io/ru/tags/ipsum/</link>
+    <description>Recent content in Ipsum on Nitra new site</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ru-ru</language>
-    <lastBuildDate>Mon, 13 Nov 2017 12:21:21 -0500</lastBuildDate>
+    <lastBuildDate>Mon, 13 Nov 2017 11:58:39 -0500</lastBuildDate>
     
-	<atom:link href="https://nitra.bitbucket.io/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="http://nitra.github.io/ru/tags/ipsum/index.xml" rel="self" type="application/rss+xml" />
     
-    
-    <item>
-      <title>Забота о клиентах</title>
-      <link>https://nitra.bitbucket.io/projects/photography/</link>
-      <pubDate>Mon, 13 Nov 2017 12:21:21 -0500</pubDate>
-      
-      <guid>https://nitra.bitbucket.io/projects/photography/</guid>
-      <description>Sometimes I take pictures. This project is about the pictures I take. Sometimes, they are pictures of cats.</description>
-    </item>
-    
-    <item>
-      <title>Природа</title>
-      <link>https://nitra.bitbucket.io/projects/design/</link>
-      <pubDate>Mon, 13 Nov 2017 12:21:16 -0500</pubDate>
-      
-      <guid>https://nitra.bitbucket.io/projects/design/</guid>
-      <description>This theme was designed by Vicky Lai. Go on, explore! 💪
-If you want to use it for your website, check out the section at the bottom of the main page. 👍</description>
-    </item>
-    
-    <item>
-      <title>Время</title>
-      <link>https://nitra.bitbucket.io/projects/writing/</link>
-      <pubDate>Mon, 13 Nov 2017 12:21:11 -0500</pubDate>
-      
-      <guid>https://nitra.bitbucket.io/projects/writing/</guid>
-      <description>Aromatic aroma con panna, crema so coffee robust coffee barista, café au lait trifecta that strong blue mountain cortado aftertaste. Aroma extraction french press, skinny sweet, blue mountain cup roast barista, beans, extra cappuccino mug crema strong.
-To go viennese cream to go, flavour, so mocha as, carajillo iced et a siphon froth. Aged, eu, cup, brewed aroma kopi-luwak, coffee, id viennese french press brewed grounds acerbic froth. Decaffeinated acerbic, spoon beans seasonal, french press café au lait mazagran roast chicory, pumpkin spice galão as fair trade, dark irish cup ristretto half and half whipped shop.</description>
-    </item>
     
     <item>
       <title>Зачем ALPN для &#34;Вашего сайта&#34;</title>
-      <link>https://nitra.bitbucket.io/blog/hipster-ipsum/</link>
+      <link>http://nitra.github.io/ru/blog/hipster-ipsum/</link>
       <pubDate>Mon, 13 Nov 2017 11:58:39 -0500</pubDate>
       
-      <guid>https://nitra.bitbucket.io/blog/hipster-ipsum/</guid>
+      <guid>http://nitra.github.io/ru/blog/hipster-ipsum/</guid>
       <description>ALPN это Protocol negotiation До прихода HTTP2 установка зашифрованного соединения (просто HTTPS) представляла собой действия показанные на первом рисунке. А с учетом того что для каждого ресурса (картинки, видео, скрипта и т. д.) устанавливалось новое соединение, то показанные на рисунке действия выполнялись многократно. Когда добавляется HTTP2, то соединение устанавливается только одно. Но и даже в этом случае есть возможность выиграть 1 обращение к серверу. Как происходит работа HTTP2 без ALPN (до ALPN в HTTP2 использовался NPN): браузер говорит серверу: «давай общаться» сервер ему отвечает: «давай, я умею на английском, французском и испанском» браузер отвечает: «круто, я тоже знаю французский, давай на нем поговорим» сервер ему отвечает: «Bonjour mon soleil» Это показано на втором графике.</description>
     </item>
     
     <item>
       <title>HTTP2</title>
-      <link>https://nitra.bitbucket.io/blog/startup-ipsum/</link>
+      <link>http://nitra.github.io/ru/blog/startup-ipsum/</link>
       <pubDate>Mon, 06 Nov 2017 12:04:06 -0500</pubDate>
       
-      <guid>https://nitra.bitbucket.io/blog/startup-ipsum/</guid>
+      <guid>http://nitra.github.io/ru/blog/startup-ipsum/</guid>
       <description>SpaceTeam affordances quantitative vs. qualitative SpaceTeam physical computing earned media thinker-maker-doer pair programming. Bootstrapping pitch deck physical computing driven cortado human-centered design innovate human-centered design driven. Grok pitch deck fund pitch deck sticky note affordances minimum viable product integrate paradigm viral iterate. Driven fund thought leader personas workflow SpaceTeam viral pair programming physical computing intuitive 360 campaign latte bootstrapping minimum viable product. Bootstrapping physical computing responsive pitch deck SpaceTeam parallax long shadow pitch deck bootstrapping ideate.</description>
     </item>
     
     <item>
       <title>Важно чтобы был HSTS на &#34;Вашем сайте&#34;</title>
-      <link>https://nitra.bitbucket.io/blog/coffee-ipsum/</link>
+      <link>http://nitra.github.io/ru/blog/coffee-ipsum/</link>
       <pubDate>Wed, 01 Nov 2017 12:04:16 -0500</pubDate>
       
-      <guid>https://nitra.bitbucket.io/blog/coffee-ipsum/</guid>
+      <guid>http://nitra.github.io/ru/blog/coffee-ipsum/</guid>
       <description>HTTP Strict Transport Security (HSTS) Без данного механизма на HTTPS возможна MITM атака. Как работает пример данной атаки, например у нас есть сайт который имеет корректный https и редирект всех запросов с http на https. Таким образом когда пользователь вбивает в браузере
 example.com  Он всегда видит зеленый замочек и “спит спокойно”. На самом деле, сначала происходит обращение к
 http://example.com  и потом сервер дает браузеру команду на открытие</description>
-    </item>
-    
-    <item>
-      <title>Contact</title>
-      <link>https://nitra.bitbucket.io/contact/</link>
-      <pubDate>Thu, 09 Mar 2017 13:23:28 +0800</pubDate>
-      
-      <guid>https://nitra.bitbucket.io/contact/</guid>
-      <description>Мы с удовольствием будем с Вами общаться, чтобы ответить на ВСЕ интересующие Вас вопросы.</description>
-    </item>
-    
-    <item>
-      <title>About</title>
-      <link>https://nitra.bitbucket.io/about/</link>
-      <pubDate>Thu, 09 Mar 2017 13:19:25 +0800</pubDate>
-      
-      <guid>https://nitra.bitbucket.io/about/</guid>
-      <description> &amp;ldquo;Ваш сайт&amp;rdquo; может работать быстрее Добавить защиту клиентской информации  </description>
     </item>
     
   </channel>

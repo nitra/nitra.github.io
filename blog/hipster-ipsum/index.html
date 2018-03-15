@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="ru-ru">
+
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="chrome=1">
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="referrer" content="no-referrer">
+<meta name="description" content="Website description.">
+
+<base href="https://nitra.bitbucket.io/">
+<title>
+
+
+     Зачем ALPN для &#34;Вашего сайта&#34; 
+
+</title>
+<link rel="canonical" href="https://nitra.bitbucket.io/blog/hipster-ipsum/">
+
+
+
+
+
+
+<script
+src="https://code.jquery.com/jquery-3.2.1.min.js"
+integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+crossorigin="anonymous"></script>
+
+
+<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito+Sans">
+
+
+
+    <link rel="stylesheet" href="css/light-style.css">
+    
+
+
+
+
+<link rel="shortcut icon"
+
+    href="img/fav.ico"
+
+>
+
+
+
+
+
+
+
+</head>
+
+<body>
+
+<div class="section" id="top">
+
+    <div class="container hero ">
+    <h1 class="bold-title is-1">Blog</h1>
+    </div>
+
+
+<div class="section ">
+
+    <div class="container">
+    <hr>
+<nav class="nav nav-center">
+    <span id="nav-toggle" class="nav-toggle"  onclick="document.getElementById('nav-menu').classList.toggle('is-active');">
+      <span></span>
+      <span></span>
+      <span></span>
+    </span>
+    <div id="nav-menu" class="nav-left nav-menu">
+      <span class="nav-item">
+        <a href="https://nitra.bitbucket.io/">Main</a>
+      </span>
+      <span class="nav-item">
+        <a href="https://nitra.bitbucket.io/#about">About</a> 
+      </span>
+      <span class="nav-item">
+        <a href="https://nitra.bitbucket.io/blog">Back to blog</a>
+      </span> 
+      <span class="nav-item">
+        <a href="https://nitra.bitbucket.io/#contact">Contact</a>
+      </span>
+    
+      <span class="nav-item">
+        <a href="https://nitra.bitbucket.io/index.xml"><i class="fa fa-rss"></i></a>
+      </span>
+    
+    </div>
+</nav>
+<hr>
+    </div>
+
+    <div class="container ">
+        <h2 class="title is-1 top-pad strong-post-title"><a href="https://nitra.bitbucket.io/blog/hipster-ipsum/">Зачем ALPN для &#34;Вашего сайта&#34;</a></h2>
+            <div class="post-data">
+                Nov 13, 2017 |
+                1 minute read
+            </div>
+
+            
+                <div class="blog-share">
+                Share this:
+                
+                <a class="twitter-share-button" href="https://twitter.com/intent/tweet?text=Read%20%d0%97%d0%b0%d1%87%d0%b5%d0%bc%20ALPN%20%d0%b4%d0%bb%d1%8f%20%22%d0%92%d0%b0%d1%88%d0%b5%d0%b3%d0%be%20%d1%81%d0%b0%d0%b9%d1%82%d0%b0%22%20https%3a%2f%2fnitra.bitbucket.io%2fblog%2fhipster-ipsum%2f"
+                onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+                <i class="fa fa-twitter"></i>
+                <span class="hidden">Twitter</span>
+                </a>
+                
+                 
+                <a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fnitra.bitbucket.io%2fblog%2fhipster-ipsum%2f"
+                onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+                <i class="fa fa-facebook"></i>
+                <span class="hidden">Facebook</span>
+                </a>
+                
+                
+                
+                <a class="icon-google-plus" href="https://plus.google.com/share?url=https%3a%2f%2fnitra.bitbucket.io%2fblog%2fhipster-ipsum%2f"
+                onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
+                <i class="fa fa-google-plus"></i>
+                <span class="hidden">Google+</span>
+                </a>
+                
+                </div>
+            
+
+    </div>
+
+    <div class="container markdown  top-pad">
+        <p>ALPN это Protocol negotiation
+До прихода HTTP2 установка зашифрованного соединения (просто HTTPS) представляла собой действия показанные на первом рисунке.
+А с учетом того что для каждого ресурса (картинки, видео, скрипта и т. д.) устанавливалось новое соединение, то показанные на рисунке действия выполнялись многократно.
+Когда добавляется HTTP2, то соединение устанавливается только одно. Но  и даже в этом случае есть возможность выиграть 1 обращение к серверу.
+Как происходит работа  HTTP2 без ALPN (до ALPN в HTTP2 использовался NPN):
+браузер говорит серверу: «давай общаться»
+сервер ему отвечает: «давай, я умею на английском, французском и испанском»
+браузер отвечает: «круто, я тоже знаю французский, давай на нем поговорим»
+сервер ему отвечает: «Bonjour mon soleil»
+Это показано на втором графике.
+А с ALPN «диалог» строиться следующим образом:
+браузер говорит серверу: «давай общаться, я знаю немецкий, украинский и французский»
+сервер ему отвечает: «давай, но я знаю только французский из того что ты знаешь»
+и сразу сервер начинает диалог: «J&rsquo;aime mon soleil»
+Это показано на третьем графике.</p>
+
+    </div>
+
+    <div class="disqus">
+        
+    </div>
+
+<div class="container has-text-centered top-pad">
+<hr>
+<a href="https://nitra.bitbucket.io/blog/hipster-ipsum/#top"><i class="fa fa-arrow-up"></i></a>
+<hr>
+</div>
+
+<div class="section" id="footer">
+    <div class="container has-text-centered">
+        
+        <span class="footer-text">Nitra технология сделана с <i class="fa fa-heart"></i> и помощью <i class="fa fa-coffee"></i></span>
+        
+    </div>
+</div>
+
+<script type="text/javascript" src="https://nitra.bitbucket.io/js/p.js"></script>
+</div>
+</div>
+
+
+<script>
+$('a[href^="https:\/\/nitra.bitbucket.io\/blog\/hipster-ipsum\/#"]').click(function(e) {
+    e.preventDefault();
+    var target = this.hash;
+    $('html, body').animate({
+    scrollTop: $(target).offset().top
+    }, 500);
+    return false;
+})
+</script>
+
+</body>

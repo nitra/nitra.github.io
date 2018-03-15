@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="ru-ru">
+
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="chrome=1">
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="referrer" content="no-referrer">
+<meta name="description" content="Website description.">
+
+<base href="http://nitra.github.io/">
+<title>
+
+
+     Важно чтобы был HSTS на &#34;Вашем сайте&#34; 
+
+</title>
+<link rel="canonical" href="http://nitra.github.io/ru/blog/coffee-ipsum/">
+
+
+
+
+
+
+<script
+src="https://code.jquery.com/jquery-3.2.1.min.js"
+integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+crossorigin="anonymous"></script>
+
+
+<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito+Sans">
+
+
+
+    <link rel="stylesheet" href="css/light-style.css">
+    
+
+
+
+
+<link rel="shortcut icon"
+
+    href="img/fav.ico"
+
+>
+
+
+
+<script>
+window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+ga('create', 'UA-16087162-5', 'auto');
+ga('send', 'pageview');
+</script>
+<script async src='//www.google-analytics.com/analytics.js'></script>
+
+
+
+
+
+<script src="//code.tidio.co/gqnenovplt1spiluxxqo5kaslttbdxb2.js"></script>
+</head>
+
+<body>
+
+<div class="section" id="top">
+
+    <div class="container hero ">
+    <h1 class="bold-title is-1">Blog</h1>
+    </div>
+
+
+<div class="section ">
+
+    <div class="container">
+    <hr>
+<nav class="nav nav-center">
+    <span id="nav-toggle" class="nav-toggle"  onclick="document.getElementById('nav-menu').classList.toggle('is-active');">
+      <span></span>
+      <span></span>
+      <span></span>
+    </span>
+    <div id="nav-menu" class="nav-left nav-menu">
+      <span class="nav-item">
+        <a href="http://nitra.github.io/">Main</a>
+      </span>
+      <span class="nav-item">
+        <a href="http://nitra.github.io/#about">About</a> 
+      </span>
+      <span class="nav-item">
+        <a href="http://nitra.github.io/blog">Back to blog</a>
+      </span> 
+      <span class="nav-item">
+        <a href="http://nitra.github.io/#contact">Contact</a>
+      </span>
+    
+      <span class="nav-item">
+        <a href="http://nitra.github.io/index.xml"><i class="fa fa-rss"></i></a>
+      </span>
+    
+    </div>
+</nav>
+<hr>
+    </div>
+
+    <div class="container ">
+        <h2 class="title is-1 top-pad strong-post-title"><a href="http://nitra.github.io/ru/blog/coffee-ipsum/">Важно чтобы был HSTS на &#34;Вашем сайте&#34;</a></h2>
+            <div class="post-data">
+                Nov 1, 2017 |
+                1 minute read
+            </div>
+
+            
+                <div class="blog-share">
+                Share this:
+                
+                <a class="twitter-share-button" href="https://twitter.com/intent/tweet?text=Read%20%d0%92%d0%b0%d0%b6%d0%bd%d0%be%20%d1%87%d1%82%d0%be%d0%b1%d1%8b%20%d0%b1%d1%8b%d0%bb%20HSTS%20%d0%bd%d0%b0%20%22%d0%92%d0%b0%d1%88%d0%b5%d0%bc%20%d1%81%d0%b0%d0%b9%d1%82%d0%b5%22%20http%3a%2f%2fnitra.github.io%2fru%2fblog%2fcoffee-ipsum%2f"
+                onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+                <i class="fa fa-twitter"></i>
+                <span class="hidden">Twitter</span>
+                </a>
+                
+                 
+                <a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u=http%3a%2f%2fnitra.github.io%2fru%2fblog%2fcoffee-ipsum%2f"
+                onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+                <i class="fa fa-facebook"></i>
+                <span class="hidden">Facebook</span>
+                </a>
+                
+                
+                
+                <a class="icon-google-plus" href="https://plus.google.com/share?url=http%3a%2f%2fnitra.github.io%2fru%2fblog%2fcoffee-ipsum%2f"
+                onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
+                <i class="fa fa-google-plus"></i>
+                <span class="hidden">Google+</span>
+                </a>
+                
+                </div>
+            
+
+    </div>
+
+    <div class="container markdown  top-pad">
+        
+
+<h1 id="http-strict-transport-security-hsts">HTTP Strict Transport Security (HSTS)</h1>
+
+<p>Без данного механизма на HTTPS возможна MITM атака.
+Как работает пример данной атаки, например у нас есть сайт который имеет корректный https и редирект всех запросов с http на https. Таким образом когда пользователь вбивает в браузере</p>
+
+<pre><code>example.com
+</code></pre>
+
+<p>Он всегда видит зеленый замочек и “спит спокойно”.
+На самом деле, сначала происходит обращение к</p>
+
+<pre><code>http://example.com
+</code></pre>
+
+<p>и потом сервер дает браузеру команду на открытие</p>
+
+<pre><code>https://example.com
+</code></pre>
+
+<p>Вот в этот момент и возможна эта атака:
+Сидя в Макдональдсе с Wifi первый не шифрованный запрос перехватывается злоумышленником, сидящим за соседним столиком с картошкой фри, и редиректиться на версию сайта злоумышленника (копию оригинала, чтобы собрать логин и пароль или просто содержащую вредоносный код, а после заражения можно и на оригинал отправить - чтобы пользователь ничего не заметил).</p>
+
+<p>Когда настроен HSTS, то:
+- если пользователь вбивает example.com, то сразу браузер открывает <a href="https://example.com">https://example.com</a>
+- если пользователь вбивает <strong>http</strong>://example.com, то все равно браузер сразу открывает <strong>https</strong>://example.com</p>
+
+<p>В результате это работает быстрее - за счет за счет отсутствия редиректа и безопаснее - за счет снижения возможности атаки man-in-the-middle.</p>
+
+<p><img src="http://nitra.github.io/img/hsts.jpg" alt="Sample image" /></p>
+
+    </div>
+
+    <div class="disqus">
+        
+    </div>
+
+<div class="container has-text-centered top-pad">
+<hr>
+<a href="http://nitra.github.io/ru/blog/coffee-ipsum/#top"><i class="fa fa-arrow-up"></i></a>
+<hr>
+</div>
+
+<div class="section" id="footer">
+    <div class="container has-text-centered">
+        
+        <span class="footer-text">Nitra технология сделана с <i class="fa fa-heart"></i> и помощью <i class="fa fa-coffee"></i></span>
+        
+    </div>
+</div>
+
+<script type="text/javascript" src="http://nitra.github.io/js/p.js"></script>
+</div>
+</div>
+
+
+<script>
+$('a[href^="http:\/\/nitra.github.io\/ru\/blog\/coffee-ipsum\/#"]').click(function(e) {
+    e.preventDefault();
+    var target = this.hash;
+    $('html, body').animate({
+    scrollTop: $(target).offset().top
+    }, 500);
+    return false;
+})
+</script>
+
+</body>

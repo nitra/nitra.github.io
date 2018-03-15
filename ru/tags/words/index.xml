@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Words on Nitra new site</title>
+    <link>http://nitra.github.io/ru/tags/words/</link>
+    <description>Recent content in Words on Nitra new site</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ru-ru</language>
+    <lastBuildDate>Mon, 13 Nov 2017 11:58:39 -0500</lastBuildDate>
+    
+	<atom:link href="http://nitra.github.io/ru/tags/words/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Зачем ALPN для &#34;Вашего сайта&#34;</title>
+      <link>http://nitra.github.io/ru/blog/hipster-ipsum/</link>
+      <pubDate>Mon, 13 Nov 2017 11:58:39 -0500</pubDate>
+      
+      <guid>http://nitra.github.io/ru/blog/hipster-ipsum/</guid>
+      <description>ALPN это Protocol negotiation До прихода HTTP2 установка зашифрованного соединения (просто HTTPS) представляла собой действия показанные на первом рисунке. А с учетом того что для каждого ресурса (картинки, видео, скрипта и т. д.) устанавливалось новое соединение, то показанные на рисунке действия выполнялись многократно. Когда добавляется HTTP2, то соединение устанавливается только одно. Но и даже в этом случае есть возможность выиграть 1 обращение к серверу. Как происходит работа HTTP2 без ALPN (до ALPN в HTTP2 использовался NPN): браузер говорит серверу: «давай общаться» сервер ему отвечает: «давай, я умею на английском, французском и испанском» браузер отвечает: «круто, я тоже знаю французский, давай на нем поговорим» сервер ему отвечает: «Bonjour mon soleil» Это показано на втором графике.</description>
+    </item>
+    
+    <item>
+      <title>HTTP2</title>
+      <link>http://nitra.github.io/ru/blog/startup-ipsum/</link>
+      <pubDate>Mon, 06 Nov 2017 12:04:06 -0500</pubDate>
+      
+      <guid>http://nitra.github.io/ru/blog/startup-ipsum/</guid>
+      <description>SpaceTeam affordances quantitative vs. qualitative SpaceTeam physical computing earned media thinker-maker-doer pair programming. Bootstrapping pitch deck physical computing driven cortado human-centered design innovate human-centered design driven. Grok pitch deck fund pitch deck sticky note affordances minimum viable product integrate paradigm viral iterate. Driven fund thought leader personas workflow SpaceTeam viral pair programming physical computing intuitive 360 campaign latte bootstrapping minimum viable product. Bootstrapping physical computing responsive pitch deck SpaceTeam parallax long shadow pitch deck bootstrapping ideate.</description>
+    </item>
+    
+  </channel>
+</rss>

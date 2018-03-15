@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Images on Nitra new site</title>
+    <link>http://nitra.github.io/ru/tags/images/</link>
+    <description>Recent content in Images on Nitra new site</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ru-ru</language>
+    <lastBuildDate>Wed, 01 Nov 2017 12:04:16 -0500</lastBuildDate>
+    
+	<atom:link href="http://nitra.github.io/ru/tags/images/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Важно чтобы был HSTS на &#34;Вашем сайте&#34;</title>
+      <link>http://nitra.github.io/ru/blog/coffee-ipsum/</link>
+      <pubDate>Wed, 01 Nov 2017 12:04:16 -0500</pubDate>
+      
+      <guid>http://nitra.github.io/ru/blog/coffee-ipsum/</guid>
+      <description>HTTP Strict Transport Security (HSTS) Без данного механизма на HTTPS возможна MITM атака. Как работает пример данной атаки, например у нас есть сайт который имеет корректный https и редирект всех запросов с http на https. Таким образом когда пользователь вбивает в браузере
+example.com  Он всегда видит зеленый замочек и “спит спокойно”. На самом деле, сначала происходит обращение к
+http://example.com  и потом сервер дает браузеру команду на открытие</description>
+    </item>
+    
+  </channel>
+</rss>

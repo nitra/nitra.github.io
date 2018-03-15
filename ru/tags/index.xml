@@ -2,57 +2,57 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Tags on Nitra new site</title>
-    <link>https://nitra.bitbucket.io/tags/</link>
+    <link>http://nitra.github.io/ru/tags/</link>
     <description>Recent content in Tags on Nitra new site</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ru-ru</language>
     <lastBuildDate>Mon, 06 Nov 2017 12:04:06 -0500</lastBuildDate>
     
-	<atom:link href="https://nitra.bitbucket.io/tags/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="http://nitra.github.io/ru/tags/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Code</title>
-      <link>https://nitra.bitbucket.io/tags/code/</link>
+      <link>http://nitra.github.io/ru/tags/code/</link>
       <pubDate>Mon, 06 Nov 2017 12:04:06 -0500</pubDate>
       
-      <guid>https://nitra.bitbucket.io/tags/code/</guid>
+      <guid>http://nitra.github.io/ru/tags/code/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Coffee</title>
-      <link>https://nitra.bitbucket.io/tags/coffee/</link>
+      <link>http://nitra.github.io/ru/tags/coffee/</link>
       <pubDate>Wed, 01 Nov 2017 12:04:16 -0500</pubDate>
       
-      <guid>https://nitra.bitbucket.io/tags/coffee/</guid>
+      <guid>http://nitra.github.io/ru/tags/coffee/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Images</title>
-      <link>https://nitra.bitbucket.io/tags/images/</link>
+      <link>http://nitra.github.io/ru/tags/images/</link>
       <pubDate>Wed, 01 Nov 2017 12:04:16 -0500</pubDate>
       
-      <guid>https://nitra.bitbucket.io/tags/images/</guid>
+      <guid>http://nitra.github.io/ru/tags/images/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Ipsum</title>
-      <link>https://nitra.bitbucket.io/tags/ipsum/</link>
+      <link>http://nitra.github.io/ru/tags/ipsum/</link>
       <pubDate>Mon, 13 Nov 2017 11:58:39 -0500</pubDate>
       
-      <guid>https://nitra.bitbucket.io/tags/ipsum/</guid>
+      <guid>http://nitra.github.io/ru/tags/ipsum/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Words</title>
-      <link>https://nitra.bitbucket.io/tags/words/</link>
+      <link>http://nitra.github.io/ru/tags/words/</link>
       <pubDate>Mon, 13 Nov 2017 11:58:39 -0500</pubDate>
       
-      <guid>https://nitra.bitbucket.io/tags/words/</guid>
+      <guid>http://nitra.github.io/ru/tags/words/</guid>
       <description></description>
     </item>
     
