@@ -19,8 +19,7 @@ clientToken.then(function(clientTokenId) {
           },
           cvv: {
             selector: '#cc-cvv',
-            placeholder: 'CVV',
-            prefill: '400'
+            placeholder: 'CVV'
           },
           expirationDate: {
             selector: '#cc-expiration-date',
