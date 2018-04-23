@@ -1,12 +1,13 @@
 var payBtn = document.getElementById('pay-btn')
 var nonceGroup = document.querySelector('.nonce-group')
-var nonceInput = document.querySelector('.nonce-group input')
+// var nonceInput = document.querySelector('.nonce-group input')
 var payGroup = document.querySelector('.pay-group')
 var modal = document.getElementById('modal')
 var bankFrame = document.querySelector('.bt-modal-body')
 var closeFrame = document.getElementById('text-close')
 var amountInput = document.getElementById('amount')
 // var clientTokenScript = document.getElementById('client-token')
+var cvvLabel = document.getElementById('label-cvv')
 
 var components = {
   client: null,
@@ -34,9 +35,17 @@ function onClientCreate (err, client) {
   braintree.hostedFields.create({
     client: client,
     styles: {
-      input: {
-        'font-size': '14px',
-        'font-family': 'monospace'
+      'input': {
+        'font-size': '16px',
+        'font-family': 'courier, monospace',
+        'font-weight': 'lighter',
+        'color': '#ccc'
+      },
+      ':focus': {
+        'color': 'black'
+      },
+      '.valid': {
+        'color': '#8bdda8'
       }
     },
     fields: {
@@ -56,30 +65,41 @@ function onClientCreate (err, client) {
         prefill: '12/34'
       }
     }
-  }, onComponent('hostedFields'))
+  }, function (createErr, hostedFieldsInstance) {
+    components['hostedFields'] = hostedFieldsInstance
+    hostedFieldsInstance.on('cardTypeChange', function (event) {
+      if (event.cards.length === 1) {
+        switch (event.cards[0].type) {
+          case 'american-express':
+          case 'maestro':
+          case 'master-card':
+          case 'visa':
+            console.log(event.cards[0].niceType)
+            cvvLabel.innerHTML = event.cards[0].code['name']
+            break
+          default:
+            alert('Only american-express, maestro, master-card or visa supported')
+        }
+      } else {
+        console.log('Type of card not yet known')
+      }
+    })
+    setupForm()
+  })
 
   braintree.threeDSecure.create({
     client: client
-  }, onComponent('threeDSecure'))
-}
 
-function onComponent (name) {
-  return function (err, component) {
-    if (err) {
-      console.log('component error:', err)
-      return
-    }
-
-    components[name] = component
-
-    if (components.threeDSecure && components.hostedFields) {
-      setupForm()
-    }
-  }
+  }, function (createErr, threeDSecureInstance) {
+    components['threeDSecure'] = threeDSecureInstance
+    setupForm()
+  })
 }
 
 function setupForm () {
-  enablePayNow()
+  if (components.threeDSecure && components.hostedFields) {
+    enablePayNow()
+  }
 }
 
 function addFrame (err, iframe) {
@@ -108,9 +128,8 @@ payBtn.addEventListener('click', function (event) {
   payBtn.value = 'Processing...'
 
   components.hostedFields.tokenize(function (err, payload) {
-
     if (err) {
-      console.log('tokenization error:', err)
+      console.err('tokenization error:', err)
       enablePayNow()
       return
     } else {
@@ -124,20 +143,24 @@ payBtn.addEventListener('click', function (event) {
       removeFrame: removeFrame
     }, function (err, verification) {
       if (err) {
-        console.log('verification error:', err)
+        console.err('verification error:', err)
         enablePayNow()
         return
       }
 
       console.log('verification success:', verification)
       // nonceInput.value = verification.nonce
-      fetch("https://us-central1-nitra-p.cloudfunctions.net/checkout", {
-        body: "payment_method_nonce=" + verification.nonce,
-        headers: {
-          'content-type': 'application/x-www-form-urlencoded'
-        },
-        method: "post",
-    })
+      if (verification.liabilityShifted) {
+        fetch('https://us-central1-nitra-p.cloudfunctions.net/checkout', {
+          body: 'payment_method_nonce=' + verification.nonce + '&email=v@nitra.ai',
+          headers: {
+            'content-type': 'application/x-www-form-urlencoded'
+          },
+          method: 'post'
+        })
+      } else {
+        console.err("Couldn't create 3-D Secure transaction")
+      }
       payGroup.classList.add('hidden')
       payGroup.style.display = 'none'
       nonceGroup.classList.remove('hidden')

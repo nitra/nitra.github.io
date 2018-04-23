@@ -74,3 +74,7 @@ form {
   background-color: black;
   opacity: 0.8;
 }
+
+.braintree-hosted-fields-invalid {
+  border: 1px solid #ed574a;
+}
