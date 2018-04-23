@@ -107,7 +107,7 @@ payBtn.addEventListener('click', function (event) {
   payBtn.setAttribute('disabled', 'disabled')
   payBtn.value = 'Processing...'
 
-  var t = components.hostedFields.tokenize(function (err, payload) {
+  components.hostedFields.tokenize(function (err, payload) {
 
     if (err) {
       console.log('tokenization error:', err)
@@ -143,5 +143,4 @@ payBtn.addEventListener('click', function (event) {
       nonceGroup.classList.remove('hidden')
     })
   })
-  console.log(t)
 })
