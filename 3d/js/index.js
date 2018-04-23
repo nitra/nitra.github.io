@@ -126,7 +126,6 @@ function removeFrame () {
 }
 
 function enablePayNow () {
-  payBtn.value = 'Pay Now'
   payBtn.removeAttribute('disabled')
 }
 
