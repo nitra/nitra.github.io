@@ -52,7 +52,7 @@ function onClientCreate (err, client) {
       number: {
         selector: '#hf-number',
         placeholder: '4111 1111 1111 1111',
-        prefill: '4111111111111111'
+        prefill: '411111111111111'
       },
       cvv: {
         selector: '#hf-cvv',
@@ -84,6 +84,18 @@ function onClientCreate (err, client) {
         console.log('Type of card not yet known')
       }
     })
+
+    hostedFieldsInstance.on('validityChange', function (event) {
+      var field = event.fields[event.emittedBy]
+
+      if (event.fields['number'].isValid && event.fields['cvv'].isValid && event.fields['expirationDate'].isValid) {
+        console.log(event.emittedBy, 'is fully valid')
+        enablePayNow()
+      } else {
+        console.log(event.emittedBy, 'is not valid')
+        payBtn.setAttribute('disabled', 'disabled')
+      }
+    })
     setupForm()
   })
 
@@ -98,7 +110,7 @@ function onClientCreate (err, client) {
 
 function setupForm () {
   if (components.threeDSecure && components.hostedFields) {
-    enablePayNow()
+    payBtn.value = 'Pay Now'
   }
 }
 
