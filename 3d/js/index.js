@@ -106,14 +106,6 @@ closeFrame.addEventListener('click', function () {
 payBtn.addEventListener('click', function (event) {
   payBtn.setAttribute('disabled', 'disabled')
   payBtn.value = 'Processing...'
-  console.log('tokeniz')
-  components.hostedFields.tokenize().then(function (payload) {
-    // send payload.nonce to your server
-    console.log('tokenizar:')
-  }).catch(function (err) {
-    payBtn.removeAttribute('disabled');
-    console.error(err);
-  });
 
   var t = components.hostedFields.tokenize(function (err, payload) {
 
@@ -138,7 +130,14 @@ payBtn.addEventListener('click', function (event) {
       }
 
       console.log('verification success:', verification)
-      nonceInput.value = verification.nonce
+      // nonceInput.value = verification.nonce
+      fetch("https://us-central1-nitra-p.cloudfunctions.net/checkout", {
+        body: "payment_method_nonce=" + verification.nonce,
+        headers: {
+          'content-type': 'application/x-www-form-urlencoded'
+        },
+        method: "post",
+    })
       payGroup.classList.add('hidden')
       payGroup.style.display = 'none'
       nonceGroup.classList.remove('hidden')
