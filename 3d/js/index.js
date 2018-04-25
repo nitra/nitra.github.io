@@ -14,14 +14,6 @@ var components = {
   threeDSecure: null,
   hostedFields: null
 }
-if (window.PaymentRequest) {
-  // This browser supports Payment Request
-  // Display your Payment Request button
-  alert(1)
-} else {
-  // Browser does not support Payment Request
-  // Set up Hosted Fields, etc.
-}
 
 window.fetch('https://us-central1-nitra-p.cloudfunctions.net/testRuntimeconfig')
   .then(function (response) {
@@ -60,7 +52,7 @@ function onClientCreate (err, client) {
       number: {
         selector: '#hf-number',
         placeholder: '4111 1111 1111 1111',
-        prefill: '411111111111111'
+        prefill: '4111111111111111'
       },
       cvv: {
         selector: '#hf-cvv',
