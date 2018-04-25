@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>3D Secure with Hosted Fields</title>
+
+
+  <link rel='stylesheet prefetch' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css'>
+
+  <link rel="stylesheet" href="css/style.css">
+
+
+</head>
+
+<body>
+
+  <h1>3D Secure with Hosted Fields</h1>
+  <hr>
+
+  <form action="javascript:void(0)" class="container">
+    <div class="row">
+      <div class="col-xs-6">
+        <div class="input-group">
+          <span class="input-group-addon">
+            <span class="glyphicon glyphicon-credit-card"></span>
+          </span>
+          <div id="hf-number" class="form-control"></div>
+        </div>
+      </div>
+      <div class="col-xs-6">
+        <div class="input-group">
+          <span class="input-group-addon">
+            <span class="glyphicon glyphicon-lock"></span>
+          </span>
+          <div id="hf-cvv" class="form-control"></div>
+          <span id="label-cvv" class="input-group-addon">CVV</span>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-6">
+        <div class="input-group">
+          <span class="input-group-addon">
+            <span class="glyphicon glyphicon-calendar"></span>
+          </span>
+          <div id="hf-date" class="form-control"></div>
+        </div>
+      </div>
+      <div class="col-xs-6">
+        <div class="input-group">
+          <span class="input-group-addon">
+            <span class="glyphicon glyphicon-usd"></span>
+          </span>
+          <input id="amount" readonly class="form-control" tabindex="-1" value="10.00">
+          <span class="input-group-addon">USD</span>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-6">
+        <div class="input-group">
+          <span class="input-group-addon">
+            <span class="glyphicon glyphicon-envelope"></span>
+          </span>
+          <input id="email" class="form-control" value="vitaliytv@nitralabs.com">
+        </div>
+      </div>
+      <div class="col-xs-6">
+        <div class="input-group nonce-group hidden">
+          <span class="input-group-addon">nonce</span>
+          <input readonly name="nonce" class="form-control">
+        </div>
+        <div class="input-group pay-group">
+          <input disabled id="pay-btn" class="btn btn-success" type="submit" value="Loading...">
+        </div>
+      </div>
+    </div>
+  </form>
+
+  <div id="modal" class="hidden">
+    <div class="bt-mask"></div>
+    <div class="bt-modal-frame">
+      <div class="bt-modal-header">
+        <div class="header-text">Authentication</div>
+      </div>
+      <div class="bt-modal-body"></div>
+      <div class="bt-modal-footer">
+        <a id="text-close" href="#">Cancel</a>
+      </div>
+    </div>
+  </div>
+  <script src='https://js.braintreegateway.com/web/3.32.1/js/client.min.js'></script>
+  <script src='https://js.braintreegateway.com/web/3.32.1/js/three-d-secure.js'></script>
+  <script src='https://js.braintreegateway.com/web/3.32.1/js/hosted-fields.js'></script>
+  <script src="js/index.js"></script>
+
+</body>
+
+</html>

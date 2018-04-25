@@ -14,6 +14,14 @@ var components = {
   threeDSecure: null,
   hostedFields: null
 }
+if (window.PaymentRequest) {
+  // This browser supports Payment Request
+  // Display your Payment Request button
+  alert(1)
+} else {
+  // Browser does not support Payment Request
+  // Set up Hosted Fields, etc.
+}
 
 window.fetch('https://us-central1-nitra-p.cloudfunctions.net/testRuntimeconfig')
   .then(function (response) {
@@ -140,7 +148,7 @@ payBtn.addEventListener('click', function (event) {
 
   components.hostedFields.tokenize(function (err, payload) {
     if (err) {
-      console.err('tokenization error:', err)
+      console.error('tokenization error:', err)
       enablePayNow()
       return
     } else {
@@ -154,7 +162,7 @@ payBtn.addEventListener('click', function (event) {
       removeFrame: removeFrame
     }, function (err, verification) {
       if (err) {
-        console.err('verification error:', err)
+        console.error('verification error:', err)
         enablePayNow()
         return
       }
@@ -170,7 +178,7 @@ payBtn.addEventListener('click', function (event) {
           method: 'post'
         })
       } else {
-        console.err("Couldn't create 3-D Secure transaction")
+        console.error("Couldn't create 3-D Secure transaction")
       }
       payGroup.classList.add('hidden')
       payGroup.style.display = 'none'
