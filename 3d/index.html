@@ -9,10 +9,12 @@
 <body>
 
 <script>
+var isOpera = (!!window.opr && !!opr.addons) || !!window.opera || navigator.userAgent.indexOf(' OPR/') >= 0;
+alert(isOpera)
   if (window.PaymentRequest && location.protocol == 'https:') {
     // This browser supports Payment Request
     // Display your Payment Request button
-    window.location.replace("pr.html");
+   // window.location.replace("pr.html");
   } else {
     // Browser does not support Payment Request
     // Set up Hosted Fields, etc.
