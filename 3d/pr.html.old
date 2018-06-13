@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Payment Request</title>
+
+</head>
+
+<body>
+    <style>
+        .loader {
+            border: 16px solid #f3f3f3;
+            /* Light grey */
+            border-top: 16px solid #3498db;
+            /* Blue */
+            border-radius: 50%;
+            width: 120px;
+            height: 120px;
+            animation: spin 2s linear infinite;
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+    </style>
+    <div id="loader" class="loader"></div>
+
+    <script type="text/javascript">
+        var button = document.querySelector('#payment-request-button');
+
+        window.fetch('https://us-central1-nitra-p.cloudfunctions.net/testRuntimeconfig')
+            .then(function (response) {
+                return response.text()
+            }).then(function (clientToken) {
+                braintree.client.create({
+                    authorization: clientToken
+                }, onClientCreate)
+            })
+
+        function onClientCreate(err, clientInstance) {
+            if (err) {
+                console.log('client error:', err)
+                return
+            }
+
+            braintree.paymentRequest.create({
+                client: clientInstance
+            }, function (err, instance) {
+                if (err) {
+                    // Handle errors from creating payment request instance
+                }
+
+                document.getElementById("loader").style.display = "none";
+                var amount = '100.00';
+
+                instance.tokenize({
+                    details: {
+                        total: {
+                            label: 'Total',
+                            amount: {
+                                currency: 'USD',
+                                value: amount
+                            }
+                        }
+                    }
+                }, function (err, payload) {
+                    if (err) {
+                        console.error(err)
+                        // Handle errors from processing payment request
+                        // TODO: вернути користувача на попередний екран
+
+                        return false;
+                    }
+
+                    fetch('https://us-central1-nitra-p.cloudfunctions.net/checkout', {
+                        body: 'payment_method_nonce=' + payload.nonce + '&email=v@nitra.ai',
+                        headers: {
+                            'content-type': 'application/x-www-form-urlencoded'
+                        },
+                        method: 'post'
+                    })
+                    // Send payload.nonce to your server
+                });
+
+            });
+
+        }
+    </script>
+
+    <script src='https://js.braintreegateway.com/web/3.32.1/js/client.min.js'></script>
+    <script src='https://js.braintreegateway.com/web/3.32.1/js/three-d-secure.js'></script>
+    <script src='https://js.braintreegateway.com/web/3.32.1/js/hosted-fields.js'></script>
+    <script src="https://js.braintreegateway.com/web/3.32.1/js/payment-request.min.js"></script>
+</body>
+
+</html>
