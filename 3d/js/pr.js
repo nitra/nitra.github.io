@@ -1,15 +1,29 @@
 var closeFrame = document.getElementById('text-close');
+var bankFrame = document.querySelector('.bt-modal-body');
+var modal = document.getElementById('modal');
 var components = {
     client: null,
     threeDSecure: null,
     paymentRequest: null
 };
 
+
+function addFrame (err, iframe) {
+    bankFrame.appendChild(iframe);
+    modal.classList.remove('hidden')
+}
+
+function removeFrame () {
+    var iframe = bankFrame.querySelector('iframe');
+    modal.classList.add('hidden');
+    iframe.parentNode.removeChild(iframe)
+}
+
 closeFrame.addEventListener('click', function () {
     components.threeDSecure.cancelVerifyCard(removeFrame())
 });
 
-window.fetch('https://us-central1-nitra-labs.cloudfunctions.net/testRuntimeconfig')
+window.fetch('https://us-central1-nitra-p.cloudfunctions.net/testRuntimeconfig')
     .then(function (response) {
         return response.text()
     }).then(function (clientToken) {
@@ -19,9 +33,9 @@ window.fetch('https://us-central1-nitra-labs.cloudfunctions.net/testRuntimeconfi
 });
 
 function onClientCreate(err, clientInstance) {
-    console.log('clientInstance', clientInstance);
+    // console.log('clientInstance', clientInstance);
     if (err) {
-        console.log('client error:', err);
+        // console.log('client error:', err);
         return
     }
 
@@ -36,7 +50,7 @@ function onClientCreate(err, clientInstance) {
 
         components['paymentRequest'] = instance;
 
-        console.log('instance - ', instance);
+        // console.log('instance - ', instance);
 
         document.getElementById("loader").style.display = "none";
         var amount = '100.00';
@@ -64,39 +78,33 @@ function onClientCreate(err, clientInstance) {
 
 }
 
+
+
 function check3d(tok, amount) {
 
     components.paymentRequest.tokenize(tok, function (err, payload) {
         if (err) {
-            console.error('tokenization error:', err);
+            // console.log('tokenization error:', err);
             return
         } else {
-            console.log('tokenization success:', payload)
+            // console.log('tokenization success:', payload)
         }
 
         components.threeDSecure.verifyCard({
 
             nonce: payload.nonce,
             amount: amount,
-            addFrame: function (err, iframe) {
-                var bankFrame = document.querySelector('.bt-modal-body');
-                var modal = document.getElementById('modal');
-                modal.classList.remove('hidden');
-                bankFrame.appendChild(iframe);
-            },
-            removeFrame: function () {
-                var modal = document.getElementById('modal');
-                modal.classList.add('hidden');
-            }
+            addFrame: addFrame,
+            removeFrame: removeFrame,
         }, function (err, verification) {
             if (err) {
-                console.log(err);
+                // console.log(err);
                 return
             }
 
-            console.log('verification success:', verification);
+            // console.log('verification success:', verification);
             if (verification.liabilityShifted) {
-                fetch('https://us-central1-nitra-labs.cloudfunctions.net/checkout', {
+                fetch('https://us-central1-nitra-p.cloudfunctions.net/checkout', {
                     body: 'payment_method_nonce=' + verification.nonce + '&email=v@nitra.ai',
                     headers: {
                         'content-type': 'application/x-www-form-urlencoded'
