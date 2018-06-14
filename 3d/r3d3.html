@@ -68,7 +68,7 @@
     paymentRequest: null
   }
 
-  window.fetch('http://127.0.0.1:8080/gettoken')
+  window.fetch('http://127.0.0.1:8080/token')
     //'https://us-central1-tests-197316.cloudfunctions.net/testconfig')//, {
     //     headers: {
     //     'Access-Control-Allow-Origin':'*'
@@ -174,7 +174,7 @@
             },
             method: 'post'
           }).then(function (res) {
-            fetch('http://127.0.0.1:8080/customercreate', {
+            fetch('http://127.0.0.1:8080/customer', {
               body: /*'payment_method_nonce=' + */verification.nonce/* + '&email=v@nitra.ai'*/,
               headers: {
                 'content-type': 'application/x-www-form-urlencoded'
