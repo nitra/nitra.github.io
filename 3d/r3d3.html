@@ -45,6 +45,7 @@
     </div>
   </div>
 </body>
+<script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
 <script src='https://js.braintreegateway.com/web/3.32.1/js/client.min.js'></script>
 <script src='https://js.braintreegateway.com/web/3.32.1/js/three-d-secure.js'></script>
 <!-- <script src='https://js.braintreegateway.com/web/3.32.1/js/hosted-fields.js'></script> -->
@@ -67,7 +68,14 @@
     paymentRequest: null
   }
 
-  window.fetch('https://us-central1-nitra-p.cloudfunctions.net/testRuntimeconfig')
+  window.fetch('http://127.0.0.1:8080/gettoken')
+    //'https://us-central1-tests-197316.cloudfunctions.net/testconfig')//, {
+    //     headers: {
+    //     'Access-Control-Allow-Origin':'*'
+    // },
+    //  mode: 'no-cors',
+    //   method: 'get'
+    // }/*'https://us-central1-nitra-p.cloudfunctions.net/testRuntimeconfig'*/)
     .then(function (response) {
       return response.text()
     }).then(function (clientToken) {
@@ -99,18 +107,18 @@
       document.getElementById("loader").style.display = "none";
       var amount = '100.00'
       var tok = {
-          details: {
-            total: {
-              label: 'Total',
-              amount: {
-                currency: 'USD',
-                value: amount
-              }
+        details: {
+          total: {
+            label: 'Total',
+            amount: {
+              currency: 'USD',
+              value: amount
             }
           }
         }
-      
-      check3d(tok,amount)
+      }
+
+      check3d(tok, amount)
 
     });
 
@@ -158,12 +166,25 @@
         console.log('verification success:', verification)
         // nonceInput.value = verification.nonce
         if (verification.liabilityShifted) {
-          fetch('https://us-central1-nitra-p.cloudfunctions.net/checkout', {
+          //          fetch('https://us-central1-nitra-p.cloudfunctions.net/checkout', {
+          fetch('http://127.0.0.1:8080/checkout', {
             body: 'payment_method_nonce=' + verification.nonce + '&email=v@nitra.ai',
             headers: {
               'content-type': 'application/x-www-form-urlencoded'
             },
             method: 'post'
+          }).then(function (res) {
+            fetch('http://127.0.0.1:8080/customercreate', {
+              body: /*'payment_method_nonce=' + */verification.nonce/* + '&email=v@nitra.ai'*/,
+              headers: {
+                'content-type': 'application/x-www-form-urlencoded'
+              },
+              method: 'post'
+            }).then(function(res){
+              console.log('create customer')
+            })
+          }).catch(function (err) {
+              console.log('error - ', err)
           })
         } else {
           console.error("Couldn't create 3-D Secure transaction")
