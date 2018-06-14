@@ -11,8 +11,12 @@ app.listen(port, () => {
 
 //mount routes
 app.get('/token', api.token)
+
 app.post('/checkout', api.checkout)
+
 app.post('/customer', api.createCustomer)
+app.put('/customer/:id', api.updateCustomer)
+app.delete('/customer/:id', api.deleteCustomer)
 
 // exeptions
 app.use((req, res, next) => {

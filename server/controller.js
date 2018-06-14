@@ -11,7 +11,7 @@ exports.token = (req, res) => {
     gateway.clientToken.generate({}, (err, response) => {
         res.setHeader('Access-Control-Allow-Origin', "*")
         res.setHeader('Access-Control-Allow-Methods', 'GET')
-        res.write(response.clientToken)
+        res.send(response.clientToken)
         res.end()
     })
 }
@@ -40,7 +40,7 @@ exports.checkout = (req, res) => {
                 // See result.transaction for details
                 console.log(result)
                 res.status(200)
-                res.write(req.body.email)
+                res.send(req.body.email)
                 res.end()
             } else {
                 // Handle errors
@@ -68,7 +68,7 @@ exports.createCustomer = (req, res) => {
         }                
         gateway.customer.create(opt, (err, result) => {
             if (err) {
-                res.write(err)
+                res.send(err)
                 res.end()
             } else {
                 if (process.env.NODE_ENV === 'dev') {
@@ -81,4 +81,35 @@ exports.createCustomer = (req, res) => {
             }
         });
     })
+}
+
+exports.updateCustomer = (req, res) => {
+    var body = '';
+    req.on('data', (data) => {
+        body += data;
+    });
+    req.on('end', () => {
+      gateway.customer.update(req.params.id, body.update, (err, result) => {
+        if (err) {
+            res.send(err)
+            res.end()
+        } else {
+            res.send(result.success)
+            res.end()
+        } 
+      });
+    })
+}
+
+exports.deleteCustomer = (req, res) => {
+    gateway.customer.delete(req.params.id, (err) => {
+        if(err){
+            res.send(err)
+            res.end()
+        }else{
+            res.send(null)
+            res.end()
+        }
+        // null
+      });
 }
