@@ -3,7 +3,7 @@ const url = require('url')
 var gateway = braintree.connect({
     environment: braintree.Environment.Sandbox,
     merchantId: 'cyhyv9sr7f3yshtk',
-    publicKey: '9jm5ph4pvqsw62fy',
+    publicKey:  '9jm5ph4pvqsw62fy',
     privateKey: '7e5449e71b8442b8420b3f9f95ffc994'
 });
 
@@ -15,7 +15,7 @@ exports.token = (req, res) => {
         res.end()
     })
 }
-  
+
 exports.checkout = (req, res) => {
     console.log('Woo 8')
     var body = '';
@@ -60,56 +60,109 @@ exports.createCustomer = (req, res) => {
     });
     req.on('end', () => {
         var nonceFromTheClient = body//.payment_method_nonce
-        console.log('nonceFromTheClient ==== ', nonceFromTheClient )
+        console.log('nonceFromTheClient ==== ', nonceFromTheClient)
         let opt = {
             firstName: "Charity",
             lastName: "Smith",
             paymentMethodNonce: nonceFromTheClient
-        }                
-        gateway.customer.create(opt, (err, result) => {
+        }
+        gateway.customer.create(opt, function (err, result) {
             if (err) {
-                res.send(err)
+                res.write(err)
                 res.end()
             } else {
+                //result.success;
+                // true
+
+                //result.customer.id;
+                // e.g 160923
+
+                //result.customer.paymentMethods[0].token;
+                // e.g f28wm
                 if (process.env.NODE_ENV === 'dev') {
-                    console.log(JSON.stringify(result))
+                    //console.log(JSON.stringify(result))
+                    res.send(result)
                     res.end()
                 } else {
-                    console.log(JSON.stringify(result))
+                    //console.log(result)
+                    res.send(result.customer.paymentMethods[0].token)
                     res.end()
                 }
             }
         });
+
+        //console.log('body  === ', body)
     })
 }
 
 exports.updateCustomer = (req, res) => {
-    var body = '';
-    req.on('data', (data) => {
-        body += data;
-    });
-    req.on('end', () => {
-      gateway.customer.update(req.params.id, body.update, (err, result) => {
+    res.setHeader('Access-Control-Allow-Origin', "*")
+    res.setHeader('Access-Control-Allow-Methods', 'PUT')
+    res.header('Access-Control-Allow-Headers', 'Content-Type, Content-Length, X-Requested-With');
+    gateway.customer.update(req.params.id, req.body.update, (err, result) => {
         if (err) {
             res.send(err)
             res.end()
         } else {
             res.send(result.success)
             res.end()
-        } 
-      });
-    })
+        }
+    });
 }
 
 exports.deleteCustomer = (req, res) => {
+    res.setHeader('Access-Control-Allow-Origin', "*")
+    res.setHeader('Access-Control-Allow-Methods', 'DELETE')
     gateway.customer.delete(req.params.id, (err) => {
-        if(err){
+        if (err) {
             res.send(err)
             res.end()
-        }else{
+        } else {
             res.send(null)
             res.end()
         }
         // null
-      });
+    });
+}
+
+exports.canselSubscription = (req, res) => {
+    res.setHeader('Access-Control-Allow-Origin', "*")
+    res.setHeader('Access-Control-Allow-Methods', 'DELETE')
+    gateway.subscription.cansel(req.params.id, (err, res) => {
+        if (err) {
+            res.send(err)
+            res.end()
+        } else {
+            res.send(res)
+            res.end()
+        }
+        // null
+    });
+}
+
+exports.createSubscription = (req, res) => {
+    var body = '';
+    res.setHeader('Access-Control-Allow-Origin', "*")
+    res.setHeader('Access-Control-Allow-Methods', 'POST')
+    req.on('data', (data) => {
+        body += data;
+    });
+    req.on('end', () => {
+        console.log('params - ', body)
+        let opt = {
+            paymentMethodToken: body,
+            planId: 'rg2w'
+        }
+        console.log('--- create sub -- opt -', opt)
+        gateway.subscription.create(opt, (err, result) => {
+            if (err) {
+                res.send(err)
+                res.end()
+            } else {
+                console.log('sub create - ', result)
+                res.send('sub create - ok')
+                res.end()
+            }
+        })
+    })
 }
