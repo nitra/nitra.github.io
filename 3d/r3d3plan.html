@@ -149,16 +149,17 @@
         // nonceInput.value = verification.nonce
         if (verification.liabilityShifted) {
           //          fetch('https://us-central1-nitra-p.cloudfunctions.net/checkout', {
-          fetch('http://127.0.0.1:8080/checkout', {
-            body: 'payment_method_nonce=' + verification.nonce + '&email=v@nitra.ai',
+          fetch('http://127.0.0.1:8080/checkoutbil', {
+            body: /*'payment_method_nonce=' + */verification.nonce/* + '&email=v@nitra.ai'*/,
             headers: {
               'content-type': 'application/x-www-form-urlencoded'
             },
             method: 'post'
           }).then(function (res) {
-            fetch('http://127.0.0.1:8080/customer', {
-              body: /*'payment_method_nonce=' + */verification.nonce/* + '&email=v@nitra.ai'*/,
-              headers: {
+            console.log('blling create - ', res)
+          //  fetch('http://127.0.0.1:8080/customer', {
+          //    body: /*'payment_method_nonce=' + */verification.nonce/* + '&email=v@nitra.ai'*/,
+          /*    headers: {
                 'content-type': 'application/x-www-form-urlencoded'
               },
               method: 'post'
@@ -181,6 +182,7 @@
                    console.log('subscription - ', data)
                  })
               })
+          */
           }).catch(function (err) {
             console.log('error - ', err)
           })

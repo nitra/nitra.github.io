@@ -18,6 +18,7 @@ app.listen(port, () => {
 app.get('/token', api.token)
 
 app.post('/checkout', api.checkout)
+app.post('/checkoutbil', api.checkoutbil)
 
 app.post('/customer', api.createCustomer)
 app.put('/customer/:id', api.updateCustomer)

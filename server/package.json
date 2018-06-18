@@ -11,7 +11,8 @@
   "dependencies": {
     "express": "^4.16.2",
     "path": "*",
-    "braintree": "*"
+    "braintree": "*",
+    "node-fetch": "*"
   },
   "devDependencies": {
     "mocha": "*",

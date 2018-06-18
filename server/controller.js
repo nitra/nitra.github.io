@@ -1,11 +1,30 @@
 const braintree = require("braintree")
 const url = require('url')
+var fetch = require('node-fetch')
 var gateway = braintree.connect({
     environment: braintree.Environment.Sandbox,
     merchantId: 'cyhyv9sr7f3yshtk',
-    publicKey:  '9jm5ph4pvqsw62fy',
+    publicKey: '9jm5ph4pvqsw62fy',
     privateKey: '7e5449e71b8442b8420b3f9f95ffc994'
 });
+function gatewayTransactionSale(conf) {
+    return new Promise((resolve, reject) => {
+        gateway.transaction.sale(conf, function (err, result) {
+            if (result.success) {
+                return resolve(result)
+            }
+            if (err) {
+                console.log('error -- ', err)
+                return reject(err)
+            }
+            if (!result.sucess) {
+                console.log('error -- ', err)
+                return reject(result)
+            }
+        })
+    })
+}
+
 
 exports.token = (req, res) => {
     gateway.clientToken.generate({}, (err, response) => {
@@ -26,7 +45,7 @@ exports.checkout = (req, res) => {
     });
     req.on('end', () => {
         console.log("Body: " + body);
-        var nonceFromTheClient = body.payment_method_nonce
+        var nonceFromTheClient = body//.payment_method_nonce
         console.log('nonceFromTheClient - ', nonceFromTheClient)
         let opt = {
             amount: "10.00",
@@ -35,6 +54,32 @@ exports.checkout = (req, res) => {
                 submitForSettlement: true
             }
         }
+
+        gatewayTransactionSale(opt)
+            .then((r) => {
+                console.log(r.success)
+                res.status(200)
+                res.send('check success')
+                res.end()
+            })
+            .then(() => {
+                return fetch('http://127.0.0.1:8080/customer', {
+                    body: nonceFromTheClient,
+                    headers: {
+                        'content-type': 'application/x-www-form-urlencoded'
+                    },
+                    method: 'post'
+                })
+            }).then((resp) => {
+                console.log('resp customer --', resp)
+            })
+            .catch((err) => {
+                console.log(err)
+                res.status(500)
+                res.end()
+            })
+
+        /*
         gateway.transaction.sale(opt, function (err, result) {
             if (result.success) {
                 // See result.transaction for details
@@ -48,8 +93,64 @@ exports.checkout = (req, res) => {
                 res.end()
             }
         });
+        */
     });
 }
+
+exports.checkoutbil = (req, res) => {
+    console.log('Woo 8')
+    var body = '';
+    res.setHeader('Access-Control-Allow-Origin', "*")
+    res.setHeader('Access-Control-Allow-Methods', 'POST')
+    req.on('data', (data) => {
+        body += data;
+    });
+    req.on('end', () => {
+        console.log("Body: " + body);
+        var nonceFromTheClient = body//.payment_method_nonce
+        console.log('nonceFromTheClient - ', nonceFromTheClient)
+        let opt = {
+            body: nonceFromTheClient,
+            headers: {
+                'content-type': 'application/x-www-form-urlencoded'
+            },
+            method: 'post'
+        }
+        fetch('http://127.0.0.1:8080/customer', opt)
+        .then(resp => resp.text())
+        .then(data => {
+            console.log('token --', data)
+            return data
+        })
+        .then((token) => {
+            console.log('customer token ============', token)
+            let opt = {
+                body: token,
+                headers: {
+                    'content-type': 'application/x-www-form-urlencoded'
+                },
+                method: 'post'
+            }
+            return fetch('http://127.0.0.1:8080/subscription', opt)
+        })
+        .then((resp) => {
+            res.status(201)
+            res.send(resp.sucess)
+            res.end()
+            return resp.text()
+        })
+        .then(data =>{
+            console.log('subscription --', data)
+        })
+        .catch((err) => {
+                console.log(err)
+                res.status(500)
+                res.end()
+            })
+    })
+}
+
+
 
 exports.createCustomer = (req, res) => {
     var body = '';
@@ -84,7 +185,7 @@ exports.createCustomer = (req, res) => {
                     res.send(result)
                     res.end()
                 } else {
-                    //console.log(result)
+                    console.log(result)
                     res.send(result.customer.paymentMethods[0].token)
                     res.end()
                 }
