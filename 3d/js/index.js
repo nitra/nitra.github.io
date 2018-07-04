@@ -50,17 +50,17 @@ function onClientCreate (err, client) {
             number: {
                 selector: '#card-number',
                 placeholder: 'Номер карты',
-                // prefill: '4111111111111111'
+                prefill: '4111111111111111'
             },
             cvv: {
                 selector: '#cvv',
                 placeholder: 'cvv',
-                // prefill: '123'
+                prefill: '123'
             },
             expirationDate: {
                 selector: '#expiration-date',
                 placeholder: "MM / YY",
-                // prefill: '12/34'
+                prefill: '12/34'
             }
         }
     }, function (createErr, hostedFieldsInstance) {
